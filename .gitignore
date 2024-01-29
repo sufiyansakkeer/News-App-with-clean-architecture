@@ -52,6 +52,6 @@ app.*.map.json
 #linux
 /linux
 
-
+api_key.dart
 
 
