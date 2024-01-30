@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 
 /// network call response. we have success and error when we calling APIs etc
+/// Every API call has two type of response success and failure
 abstract class DataState<T> {
   final T? data;
   final DioException? error;

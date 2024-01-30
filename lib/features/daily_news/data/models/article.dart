@@ -1,5 +1,11 @@
 import 'package:news_app_clean_architecture/features/daily_news/domain/entities/article.dart';
 
+/// Here we use the `Model` instead of `Entity` because  the domain layer must be
+/// independent and not depend on other layers and if we want to use `Entity`
+/// instead `Model` in the data layer we may change our database in the future or
+/// use XML instead of Json and we have to again change the `Entity` which is against the
+/// rule of clean architecture
+/// And also `Model` contains the from json , to json methods
 class ArticleModel extends ArticleEntity {
   const ArticleModel({
     String? author,

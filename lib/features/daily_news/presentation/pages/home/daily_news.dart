@@ -16,6 +16,7 @@ class DailyNews extends StatelessWidget {
   }
 }
 
+// Body
 _buildBody() {
   return BlocBuilder<RemoteArticleBloc, RemoteArticleState>(
     builder: (context, state) {
@@ -40,6 +41,7 @@ _buildBody() {
   );
 }
 
+// Appbar
 AppBar _buildAppBar() => AppBar(
       title: const Text(
         "Daily news",

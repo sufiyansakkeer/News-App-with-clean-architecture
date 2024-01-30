@@ -8,9 +8,13 @@ import 'package:news_app_clean_architecture/features/daily_news/data/data_source
 import 'package:news_app_clean_architecture/features/daily_news/data/models/article.dart';
 import 'package:news_app_clean_architecture/features/daily_news/domain/repository_interface/article_repository.dart';
 
+/// Implementation of article repository
 class ArticleRepositoryImpl extends ArticleRepository {
   /// here we changed the `list<ArticleEntity>` to `List<ArticleModel`
   /// because we should not use entities in the data layer
+
+  /// Here we fetch the data from the Data layer , currently our data is from api
+  /// which available in `NewsApiServices`
 
   final NewsApiServices _newsApiServices;
   ArticleRepositoryImpl(this._newsApiServices);

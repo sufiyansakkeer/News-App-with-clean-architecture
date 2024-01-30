@@ -1,6 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
 
+/// `Entities` are the Data types and classes that we send and receive from API or
+/// any other ways Model class will implement this entity and add the from json,
+/// to json functions in it.
+/// here we use `Equatable` to easy valuable comparison
 class ArticleEntity extends Equatable {
   final String? author;
   final String? title;
@@ -22,6 +26,7 @@ class ArticleEntity extends Equatable {
   @override
 
   /// props comes with equatable package . which used to compare two objects
+  /// This property will consider which object we should consider for comparison
   List<Object?> get props => [
         author,
         title,

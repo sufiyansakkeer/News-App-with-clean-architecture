@@ -54,8 +54,7 @@ class _NewsApiServices implements NewsApiServices {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    log(ArticleModel.fromJson(_result.data!["articles"].first).toString(),
-        name: "article json model");
+
     List<ArticleModel> value = _result.data!['articles']
         .map<ArticleModel>(
             (dynamic i) => ArticleModel.fromJson(i as Map<String, dynamic>))

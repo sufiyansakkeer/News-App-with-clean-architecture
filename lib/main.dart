@@ -5,7 +5,24 @@ import 'package:news_app_clean_architecture/features/daily_news/presentation/blo
 import 'package:news_app_clean_architecture/features/daily_news/presentation/pages/home/daily_news.dart';
 import 'package:news_app_clean_architecture/injection_container.dart';
 
+/// `presentation`: This layer contains the UI components and is responsible for
+/// displaying data to the user and capturing user input. It includes widgets,
+/// pages, and other UI-related code. UI components should interact with
+/// `BLoCs`(or any other `state management`) to retrieve and display data. BLoCs, in
+/// turn, interact with the domain layer to perform business logic.
+
+/// `domain`: The domain layer contains the business logic and use cases of the
+/// application. It is independent of any external frameworks and should only
+/// depend on the core Dart libraries.
+
+/// `data`: This layer is responsible for interacting with external data sources
+/// such as databases, APIs, or repositories. It implements the interfaces
+/// defined in the domain layer.
+
+/// `core`: The core layer includes common utilities, helper functions, and shared
+/// code that is used across multiple layers.
 Future<void> main() async {
+  /// To initialize dependency injection
   await initializeDependencies();
   runApp(const MyApp());
 }
