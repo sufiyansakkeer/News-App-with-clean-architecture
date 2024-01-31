@@ -1,10 +1,8 @@
-import 'dart:developer';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app_clean_architecture/features/daily_news/domain/entities/article.dart';
-import 'package:url_launcher/url_launcher.dart';
+// import 'package:url_launcher/url_launcher.dart';
 
 class ArticleWidget extends StatelessWidget {
   final ArticleEntity? article;
@@ -24,7 +22,7 @@ class ArticleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
-      onTap: _onTap,
+      // onTap: _onTap,
       child: Container(
         padding: const EdgeInsetsDirectional.only(
             start: 14, end: 14, bottom: 7, top: 7),
@@ -33,7 +31,7 @@ class ArticleWidget extends StatelessWidget {
           children: [
             _buildImage(context),
             _buildTitleAndDescription(),
-            // _buildRemovableArea(),
+            _buildRemovableArea(),
           ],
         ),
       ),
@@ -139,11 +137,28 @@ class ArticleWidget extends StatelessWidget {
     );
   }
 
-  void _onTap() async {
-    var url = Uri.parse(article?.url ?? "");
-    if (!await launchUrl(url)) {
-      log("could not launch $url");
+  Widget _buildRemovableArea() {
+    if (isRemovable!) {
+      return GestureDetector(
+        onTap: _onRemove,
+        child: const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8),
+          child: Icon(Icons.remove_circle_outline, color: Colors.red),
+        ),
+      );
     }
-    // await launchUrl(url);
+    return Container();
+  }
+
+  // void _onTap() {
+  //   if (onArticlePressed != null) {
+  //     onArticlePressed!(article!);
+  //   }
+  // }
+
+  void _onRemove() {
+    // if (onRemove != null) {
+    onRemove!(article!);
+    // }
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app_clean_architecture/config/theme/app_theme.dart';
+import 'package:news_app_clean_architecture/features/daily_news/presentation/bloc/article/local/local_article_bloc.dart';
 import 'package:news_app_clean_architecture/features/daily_news/presentation/bloc/article/remote/remote_article_bloc.dart';
 import 'package:news_app_clean_architecture/features/daily_news/presentation/pages/home/daily_news.dart';
 import 'package:news_app_clean_architecture/injection_container.dart';
@@ -40,10 +41,16 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => RemoteArticleBloc(sl())..add(const GetArticle()),
         ),
+        BlocProvider(
+          create: (context) => LocalArticleBloc(
+            sl(),
+            sl(),
+            sl(),
+          ),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
         theme: theme(),
         themeMode: MediaQuery.platformBrightnessOf(context) == Brightness.dark
             ? ThemeMode.dark

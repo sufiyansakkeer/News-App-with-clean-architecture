@@ -8,6 +8,7 @@ import 'package:news_app_clean_architecture/features/daily_news/domain/usecase/d
 import 'package:news_app_clean_architecture/features/daily_news/domain/usecase/get_article_use_case.dart';
 import 'package:news_app_clean_architecture/features/daily_news/domain/usecase/get_saved_articles.dart';
 import 'package:news_app_clean_architecture/features/daily_news/domain/usecase/save_article.dart';
+import 'package:news_app_clean_architecture/features/daily_news/presentation/bloc/article/local/local_article_bloc.dart';
 import 'package:news_app_clean_architecture/features/daily_news/presentation/bloc/article/remote/remote_article_bloc.dart';
 
 /// we want way to register and access all objects inside our app for this we
@@ -83,6 +84,13 @@ Future<void> initializeDependencies() async {
   /// Bloc , it should not be singleton because it will have multiple state.
   sl.registerFactory<RemoteArticleBloc>(
     () => RemoteArticleBloc(
+      sl(),
+    ),
+  );
+  sl.registerFactory<LocalArticleBloc>(
+    () => LocalArticleBloc(
+      sl(),
+      sl(),
       sl(),
     ),
   );
