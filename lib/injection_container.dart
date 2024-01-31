@@ -1,12 +1,13 @@
 import 'package:dio/dio.dart';
-import 'package:floor/floor.dart';
 import 'package:get_it/get_it.dart';
 import 'package:news_app_clean_architecture/features/daily_news/data/data_source/local/app_database.dart';
 import 'package:news_app_clean_architecture/features/daily_news/data/data_source/remote/news_api_services.dart';
-import 'package:news_app_clean_architecture/features/daily_news/data/models/article.dart';
 import 'package:news_app_clean_architecture/features/daily_news/data/repository/article_repository_impl.dart';
 import 'package:news_app_clean_architecture/features/daily_news/domain/repository_interface/article_repository.dart';
+import 'package:news_app_clean_architecture/features/daily_news/domain/usecase/delete_article.dart';
 import 'package:news_app_clean_architecture/features/daily_news/domain/usecase/get_article_use_case.dart';
+import 'package:news_app_clean_architecture/features/daily_news/domain/usecase/get_saved_articles.dart';
+import 'package:news_app_clean_architecture/features/daily_news/domain/usecase/save_article.dart';
 import 'package:news_app_clean_architecture/features/daily_news/presentation/bloc/article/remote/remote_article_bloc.dart';
 
 /// we want way to register and access all objects inside our app for this we
@@ -50,12 +51,31 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<ArticleRepository>(
     ArticleRepositoryImpl(
       sl(),
+      sl(),
     ),
   );
 
   /// usecase
   sl.registerSingleton<GetArticleUseCase>(
     GetArticleUseCase(
+      sl(),
+    ),
+  );
+
+  sl.registerSingleton<GetSavedArticlesUseCase>(
+    GetSavedArticlesUseCase(
+      sl(),
+    ),
+  );
+
+  sl.registerSingleton<DeleteArticleUseCase>(
+    DeleteArticleUseCase(
+      sl(),
+    ),
+  );
+
+  sl.registerSingleton<SaveArticleUseCase>(
+    SaveArticleUseCase(
       sl(),
     ),
   );

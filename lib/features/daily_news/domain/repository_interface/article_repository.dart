@@ -9,5 +9,16 @@ import 'package:news_app_clean_architecture/features/daily_news/domain/entities/
 /// implements in `Data layer`.
 abstract class ArticleRepository {
   /// Here we wrap the response with `DataState` to determine the Response state
+  // API
   Future<DataState<List<ArticleEntity>>> getNewsArticle();
+
+  // Database
+  /// get all articles from database
+  Future<List<ArticleEntity>> getSavedArticle();
+
+  /// save article to database
+  Future<void> saveArticle(ArticleEntity articleEntity);
+
+  /// delete article from database
+  Future<void> deleteArticle(ArticleEntity articleEntity);
 }
