@@ -22,6 +22,8 @@ import 'package:news_app_clean_architecture/injection_container.dart';
 /// `core`: The core layer includes common utilities, helper functions, and shared
 /// code that is used across multiple layers.
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   /// To initialize dependency injection
   await initializeDependencies();
   runApp(const MyApp());
@@ -43,6 +45,9 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: theme(),
+        themeMode: MediaQuery.platformBrightnessOf(context) == Brightness.dark
+            ? ThemeMode.dark
+            : ThemeMode.light,
         home: const DailyNews(),
       ),
     );

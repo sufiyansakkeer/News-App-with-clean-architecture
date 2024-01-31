@@ -1,6 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:floor/floor.dart';
 import 'package:get_it/get_it.dart';
+import 'package:news_app_clean_architecture/features/daily_news/data/data_source/local/app_database.dart';
 import 'package:news_app_clean_architecture/features/daily_news/data/data_source/remote/news_api_services.dart';
+import 'package:news_app_clean_architecture/features/daily_news/data/models/article.dart';
 import 'package:news_app_clean_architecture/features/daily_news/data/repository/article_repository_impl.dart';
 import 'package:news_app_clean_architecture/features/daily_news/domain/repository_interface/article_repository.dart';
 import 'package:news_app_clean_architecture/features/daily_news/domain/usecase/get_article_use_case.dart';
@@ -24,6 +27,10 @@ Future<void> initializeDependencies() async {
   /// `singleton` : will give the same instance for the app life cycle
   ///
   /// `registerSingleton` method to register `singleton` and `registerFactory` to register `factory`
+
+  final database =
+      await $FloorAppDatabase.databaseBuilder("app_database").build();
+  sl.registerSingleton<AppDatabase>(database);
 
   /// dio
   sl.registerSingleton<Dio>(
